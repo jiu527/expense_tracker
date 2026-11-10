@@ -16,4 +16,4 @@ COPY alembic ./alembic
 COPY alembic.ini .
 
 # 容器启动时先执行迁移，再启动 API 服务。
-CMD ["sh", "-c", "alembic upgrade head && uvicorn app.main:app --host 0.0.0.0 --port 8000"]
+CMD ["sh", "-c", "alembic upgrade head && exec uvicorn app.main:app --host 0.0.0.0 --port ${PORT:-10000}"]
